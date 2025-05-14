@@ -77,10 +77,10 @@ Empresas que conhecem bem o perfil de seus clientes conseguem criar estratégias
 ## 📈 Visualizações
 
 ### PCA com 2 Componentes:
-![Gráfico PCA](images/clusters_pca.png)
+![Gráfico PCA]
 
 ### Radar Chart com Comparação dos Clusters:
-![Radar Chart](images/radar_clusters.png)
+![Radar Chart]
 
 ---
 
