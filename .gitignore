@@ -1,0 +1,46 @@
+# Arquivos de ambiente
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+*.env
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Dados
+data/raw/
+data/temp/
+*.csv
+*.xlsx
+*.zip
+*.tar.gz
+
+# Checkpoints do Jupyter
+.ipynb_checkpoints
+
+# Arquivos de output e cache
+*.log
+*.out
+*.pyc
+__pycache__/
+
+# Google Colab
+*.ipynb.json
+
+# Arquivos gerados
+*.png
+*.jpg
+*.svg
+*.pdf
+
+# Arquivos de sistema operacional
+*.bak
+*.tmp
+*.swp
+
+# IDEs e editores
+.vscode/
+.idea/
