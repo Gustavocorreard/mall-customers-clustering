@@ -1,90 +1,99 @@
-# 🎯 Segmentação de Clientes com Clusterização (K-Means)
 
-Este projeto tem como objetivo realizar a **segmentação de clientes** de um shopping center com base em informações demográficas e comportamentais, utilizando técnicas de **aprendizado não supervisionado** — mais especificamente, **K-Means Clustering**.
+# 📊 Segmentação de Clientes com K-Means
 
----
-
-## 🧠 Motivação
-
-Empresas que conhecem bem o perfil de seus clientes conseguem criar estratégias de marketing mais eficazes, personalizar ofertas e aumentar o engajamento. Este projeto simula uma aplicação real onde a clusterização ajuda a identificar **padrões de consumo e comportamento** de clientes com base em três variáveis simples: idade, renda e score de gastos.
+Este projeto tem como objetivo realizar a **segmentação de clientes com base em características demográficas e padrões de consumo**, utilizando o algoritmo de clusterização K-Means. A proposta é mostrar como técnicas de machine learning não supervisionado podem ser aplicadas para gerar **insights de negócio** e auxiliar estratégias de marketing.
 
 ---
 
-## 🗂️ Fonte dos Dados
+## 🎯 Objetivo
 
-- Dataset: [Mall Customers](https://www.kaggle.com/datasets/shwetabh123/mall-customers)
-- Tamanho: 200 registros
-- Colunas utilizadas:
-  - `Age`
-  - `Annual Income (k$)`
-  - `Spending Score (1-100)`
-  - `Gender` (convertida para binária)
+Dividir os clientes em **grupos com comportamentos semelhantes**, a fim de personalizar ações de vendas, retenção e campanhas de marketing.
 
 ---
 
-## 🧪 Tecnologias e Técnicas Utilizadas
+## 🧩 Sobre os Dados
 
-- `Python`
-- `Pandas` e `NumPy` (manipulação de dados)
-- `Matplotlib` e `Seaborn` (visualização)
-- `scikit-learn` (pré-processamento, clusterização, avaliação)
-- `StandardScaler` (normalização)
-- `KMeans` (algoritmo principal)
-- `PCA` (redução de dimensionalidade para visualização)
-- `Silhouette Score` (validação dos clusters)
+- **Fonte:** Base fictícia de clientes de um shopping
+- **Colunas principais:**
+  - CustomerID
+  - Gender
+  - Age
+  - Annual Income (k$)
+  - Spending Score (1-100)
 
 ---
 
-## 🔍 Etapas do Projeto
+## 🧠 Metodologia
 
-1. **Análise Exploratória dos Dados (EDA)**
-   - Verificação de distribuições
-   - Detecção de outliers
-   - Relação entre variáveis
-
+1. **Exploração dos Dados (EDA)**
+   - Análise estatística e visual das variáveis
 2. **Pré-processamento**
-   - Codificação do gênero
-   - Normalização das variáveis com `StandardScaler`
-
-3. **Determinação do número ideal de clusters**
-   - Método do cotovelo
-   - Validação com Silhouette Score
-
-4. **Aplicação do algoritmo K-Means**
-   - Clusterização com K=6 (melhor resultado de Silhouette)
-
-5. **Nomeação dos clusters**
-   - Criação de perfis interpretáveis para os grupos formados
-
-6. **Redução de dimensionalidade com PCA**
-   - Visualização bidimensional dos clusters
+   - Normalização dos dados utilizando StandardScaler
+3. **Aplicação do Algoritmo K-Means**
+   - Definição da quantidade de clusters utilizando o método do cotovelo (Elbow Method)
+4. **Visualização dos clusters**
+   - Criação de gráficos para análise visual dos grupos
+5. **Rotulagem dos Grupos**
+   - Interpretação dos perfis de cada cluster com base nos dados
 
 ---
 
-## 🧬 Perfis Encontrados
+## 📈 Resultados
 
-| Segmento              | Idade Média | Renda (k$) | Score de Gasto | Características |
-|-----------------------|-------------|------------|----------------|-----------------|
-| **Maduros Moderados** | 57.2        | 46.8       | 38.7           | Perfil mais velho, consumo moderado |
-| **Ricos Conservadores** | 39.0      | 88.3       | 14.4           | Alta renda, mas baixo engajamento |
-| **Jovens Gastadores** | 28.4        | 58.2       | 70.7           | Jovens com gasto elevado |
-| **Premium Engajados** | 33.2        | 91.0       | 72.1           | Alta renda e alto engajamento |
-| **Aspirantes Jovens** | 25.9        | 41.3       | 57.9           | Baixa renda, mas gasto elevado |
-| **Experientes Reservados** | 49.9    | 54.3       | 36.5           | Maduros com comportamento discreto |
+- **4 grupos distintos foram identificados:**
+  - Jovens com alto gasto
+  - Adultos com renda alta e gasto moderado
+  - Clientes com baixa renda e alto score de gastos
+  - Clientes mais velhos com baixo engajamento
 
 ---
 
-## 📈 Visualizações
+## 🚀 Como Executar o Projeto
 
-### PCA com 2 Componentes:
-![Gráfico PCA](images/clusters_pca.png)
+1. Clone este repositório:
+```bash
+git clone https://github.com/Gustavocorreard/segmentacao-clientes-kmeans.git
+cd segmentacao-clientes-kmeans
+```
 
-### Radar Chart com Comparação dos Clusters:
-![Radar Chart](images/radar_clusters.png)
+2. Crie um ambiente virtual (opcional, mas recomendado):
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Linux ou Mac
+.venv\Scripts\activate  # Windows
+```
+
+3. Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+4. Execute o notebook:
+- Acesse a pasta `notebooks/`
+- Abra o arquivo `segmentacao_kmeans.ipynb` no Jupyter Notebook ou Google Colab
 
 ---
 
-## ✅ Conclusões
+## 📚 Tecnologias e Ferramentas
 
-- Mesmo com um **Silhouette Score moderado (0.33)**, os clusters identificados apresentaram **coerência de negócio** e permitiram **ações práticas de segmentação**.
-- A clusterização identificou grupos altamente engajados e outros com potencial de crescimento, demonstrando o poder da análise não supervisionada em decisões estratégicas.
+- Python
+- Pandas
+- Numpy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Jupyter Notebook
+
+---
+
+## 📌 Conclusão
+
+A segmentação de clientes com K-Means é uma ferramenta poderosa para **entender perfis de consumo e comportamento de usuários**. Este projeto simula uma aplicação real de agrupamento de clientes que pode ser usada em diversos contextos comerciais, contribuindo para estratégias de marketing, vendas e relacionamento.
+
+---
+
+## 👨‍💻 Autor
+
+**Gustavo Correard**  
+🔗 [LinkedIn](https://www.linkedin.com/in/gustavocorreard/)  
+🔗 [GitHub](https://github.com/Gustavocorreard)
