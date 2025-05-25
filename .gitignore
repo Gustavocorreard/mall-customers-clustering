@@ -13,7 +13,6 @@ Thumbs.db
 # Dados
 data/raw/
 data/temp/
-*.csv
 *.xlsx
 *.zip
 *.tar.gz

@@ -50,6 +50,7 @@ Dividir os clientes em **grupos com comportamentos semelhantes**, a fim de perso
 
 ## 🚀 Como Executar o Projeto
 
+<<<<<<< HEAD
 1. Clone este repositório:
 ```bash
 git clone https://github.com/Gustavocorreard/segmentacao-clientes-kmeans.git
@@ -71,11 +72,19 @@ pip install -r requirements.txt
 4. Execute o notebook:
 - Acesse a pasta `notebooks/`
 - Abra o arquivo `segmentacao_kmeans.ipynb` no Jupyter Notebook ou Google Colab
+=======
+### PCA com 2 Componentes:
+![Gráfico PCA]
+
+### Radar Chart com Comparação dos Clusters:
+![Radar Chart]
+>>>>>>> a2893dcc7032c056debb1249fca7bbd70f1aef43
 
 ---
 
 ## 📚 Tecnologias e Ferramentas
 
+<<<<<<< HEAD
 - Python
 - Pandas
 - Numpy
@@ -97,3 +106,7 @@ A segmentação de clientes com K-Means é uma ferramenta poderosa para **entend
 **Gustavo Correard**  
 🔗 [LinkedIn](https://www.linkedin.com/in/gustavocorreard/)  
 🔗 [GitHub](https://github.com/Gustavocorreard)
+=======
+- Mesmo com um **Silhouette Score moderado (0.33)**, os clusters identificados apresentaram **coerência de negócio** e permitiram **ações práticas de segmentação**.
+- A clusterização identificou grupos altamente engajados e outros com potencial de crescimento, demonstrando o poder da análise não supervisionada em decisões estratégicas.
+>>>>>>> a2893dcc7032c056debb1249fca7bbd70f1aef43
