@@ -1,106 +1,110 @@
+# Segmentação de clientes com K-Means
 
-# 📊 Segmentação de Clientes com K-Means
+Estudo exploratório de segmentação de 200 clientes usando perfil demográfico, renda anual e score de gastos. O objetivo é formular hipóteses para ações de marketing a partir de grupos com características semelhantes.
 
-Este projeto tem como objetivo realizar a **segmentação de clientes com base em características demográficas e padrões de consumo**, utilizando o algoritmo de clusterização K-Means. A proposta é mostrar como técnicas de machine learning não supervisionado podem ser aplicadas para gerar **insights de negócio** e auxiliar estratégias de marketing.
+O projeto apresenta seis clusters e visualizações de seus perfis. Não houve execução de campanhas nem medição de aumento de vendas, engajamento ou retenção.
 
----
+## Dados
 
-## 🎯 Objetivo
+A base está em [data/Mall_Customers.csv](data/Mall_Customers.csv). Cada linha representa um cliente, com as colunas:
 
-Dividir os clientes em **grupos com comportamentos semelhantes**, a fim de personalizar ações de vendas, retenção e campanhas de marketing.
+| Coluna | Uso |
+| --- | --- |
+| `CustomerID` | Identificador, excluído da clusterização |
+| `Genre` | Categoria demográfica, codificada como Male=1 e Female=0 |
+| `Age` | Idade |
+| `Annual Income (k$)` | Renda anual em milhares de dólares |
+| `Spending Score (1-100)` | Score de gastos |
 
----
+A procedência externa e a licença da versão do arquivo precisam ser documentadas. A análise é demonstrativa e não caracteriza uma carteira real de clientes do autor.
 
-## 🧩 Sobre os Dados
+## Método
 
-- **Fonte:** Base fictícia de clientes de um shopping
-- **Colunas principais:**
-  - CustomerID
-  - Gender
-  - Age
-  - Annual Income (k$)
-  - Spending Score (1-100)
+O [notebook](notebooks/mall_customers_clustering.ipynb) contém:
 
----
+1. Inspeção da base e análise de distribuição das variáveis.
+2. Codificação de `Genre` e padronização dos quatro atributos com `StandardScaler`.
+3. Método do cotovelo para k de 1 a 10 e comparação do silhouette para k de 2 a 6.
+4. Ajuste final de K-Means com **6 clusters** e `random_state=42`.
+5. Perfil médio por cluster, rótulos interpretativos e projeção em duas dimensões com PCA.
 
-## 🧠 Metodologia
+O PCA é usado na visualização; o K-Means é ajustado nos quatro atributos padronizados.
 
-1. **Exploração dos Dados (EDA)**
-   - Análise estatística e visual das variáveis
-2. **Pré-processamento**
-   - Normalização dos dados utilizando StandardScaler
-3. **Aplicação do Algoritmo K-Means**
-   - Definição da quantidade de clusters utilizando o método do cotovelo (Elbow Method)
-4. **Visualização dos clusters**
-   - Criação de gráficos para análise visual dos grupos
-5. **Rotulagem dos Grupos**
-   - Interpretação dos perfis de cada cluster com base nos dados
+## Resultados registrados
 
----
+As saídas salvas no notebook apresentam:
 
-## 📈 Resultados
+| k | Silhouette |
+| ---: | ---: |
+| 2 | 0,2776 |
+| 3 | 0,2576 |
+| 4 | 0,2901 |
+| 5 | 0,2719 |
+| 6 | 0,3348 |
 
-- **4 grupos distintos foram identificados:**
-  - Jovens com alto gasto
-  - Adultos com renda alta e gasto moderado
-  - Clientes com baixa renda e alto score de gastos
-  - Clientes mais velhos com baixo engajamento
+O melhor silhouette entre os valores comparados é **0,3348 para k=6**. Isso não demonstra que seis seja a quantidade ideal em outros dados ou que os grupos tenham utilidade comercial validada.
 
----
+| Cluster | Idade média | Renda anual média (k$) | Score médio de gastos |
+| ---: | ---: | ---: | ---: |
+| 0 | 57,21 | 46,79 | 38,71 |
+| 1 | 39,00 | 88,33 | 14,43 |
+| 2 | 28,41 | 58,23 | 70,72 |
+| 3 | 33,21 | 91,03 | 72,14 |
+| 4 | 25,89 | 41,28 | 57,94 |
+| 5 | 49,91 | 54,26 | 36,53 |
 
-## 🚀 Como Executar o Projeto
+Esses valores foram transcritos das saídas versionadas, sem nova execução nesta revisão. Os identificadores de cluster são arbitrários e podem mudar entre ajustes.
 
-1. Clone este repositório:
+### Aplicação de negócio proposta
+
+Os perfis podem orientar hipóteses de campanhas: por exemplo, investigar uma oferta para o grupo com renda maior e score de gastos menor. Para decidir uma ação, ainda é necessário testar estabilidade dos grupos, custos e resultados por meio de um experimento. Score de gastos não mede diretamente engajamento ou propensão de resposta a uma campanha.
+
+### Visualização
+
+![Projeção dos clusters em duas componentes principais](images/cluster_pca_plot.png)
+
+## Executar localmente
+
 ```bash
-git clone https://github.com/Gustavocorreard/segmentacao-clientes-kmeans.git
-cd segmentacao-clientes-kmeans
-```
-
-2. Crie um ambiente virtual (opcional, mas recomendado):
-```bash
+git clone https://github.com/Gustavocorreard/mall-customers-clustering.git
+cd mall-customers-clustering
 python -m venv .venv
-source .venv/bin/activate  # Linux ou Mac
-.venv\Scripts\activate  # Windows
 ```
 
-3. Instale as dependências:
+Ative o ambiente:
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
 ```bash
-pip install -r requirements.txt
+# macOS ou Linux
+source .venv/bin/activate
 ```
 
-4. Execute o notebook:
-- Acesse a pasta `notebooks/`
-- Abra o arquivo `segmentacao_kmeans.ipynb` no Jupyter Notebook ou Google Colab
-=======
-### Radar Chart com Comparação dos Clusters:
-![Radar Chart](https://github.com/Gustavocorreard/mall-customers-clustering/blob/main/images/cluster_pca_plot.png)
+Instale as bibliotecas e abra o notebook:
 
+```bash
+python -m pip install -r requirements.txt
+python -m pip install jupyterlab
+python -m jupyter lab notebooks/mall_customers_clustering.ipynb
+```
 
----
+No notebook, a leitura atual usa `pd.read_csv("Mall_Customers.csv")`. Se o kernel iniciar em `notebooks/`, ajuste para `pd.read_csv("../data/Mall_Customers.csv")`. Se iniciar na raiz, use `pd.read_csv("data/Mall_Customers.csv")`.
 
-## 📚 Tecnologias e Ferramentas
+A primeira célula executa `pip install` sem versões. Em um ambiente preparado pelo `requirements.txt`, pule essa célula para manter as versões declaradas. As dependências antigas podem exigir uma versão compatível de Python; a instalação não foi revalidada nesta revisão documental.
 
-- Python
-- Pandas
-- Numpy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Jupyter Notebook
+O notebook exporta `mall_customers_clustered.csv` no diretório de execução. Os caminhos de exportação dos gráficos também são relativos a esse diretório.
 
----
+## Limitações e próximas etapas
 
-## 📌 Conclusão
+- A amostra tem 200 clientes e não inclui histórico de compras nem resposta a campanhas.
+- A escolha usa uma única semente e uma faixa limitada de k. Falta medir estabilidade em outras sementes e reamostragens.
+- `Genre` é binário e entra na distância euclidiana após padronização. É necessário avaliar se sua inclusão é adequada e comparar uma versão sem esse atributo.
+- Não há atribuição de novos clientes por um pipeline persistido, monitoramento ou validação comercial.
+- O silhouette caracteriza a separação dos grupos nesse espaço; não comprova retorno financeiro.
 
-A segmentação de clientes com K-Means é uma ferramenta poderosa para **entender perfis de consumo e comportamento de usuários**. Este projeto simula uma aplicação real de agrupamento de clientes que pode ser usada em diversos contextos comerciais, contribuindo para estratégias de marketing, vendas e relacionamento.
+## Autor
 
----
-
-## 👨‍💻 Autor
-
-**Gustavo Correard**  
-🔗 [LinkedIn](https://www.linkedin.com/in/gustavocorreard/)  
-🔗 [GitHub](https://github.com/Gustavocorreard)
-=======
-- Mesmo com um **Silhouette Score moderado (0.33)**, os clusters identificados apresentaram **coerência de negócio** e permitiram **ações práticas de segmentação**.
-- A clusterização identificou grupos altamente engajados e outros com potencial de crescimento, demonstrando o poder da análise não supervisionada em decisões estratégicas.
+[Gustavo Correard no LinkedIn](https://www.linkedin.com/in/gustavo-correard/) · [GitHub](https://github.com/Gustavocorreard)
